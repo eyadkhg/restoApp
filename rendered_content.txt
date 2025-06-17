@@ -1,0 +1,1 @@
+Warning: User-Agent string does not contain "Lynx" or "L_y_n_x"!
