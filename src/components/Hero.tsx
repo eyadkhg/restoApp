@@ -1,5 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Snackbar from './Snackbar';
+
 const Hero = () => {
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [isSnackbarVisible, setIsSnackbarVisible] = useState(false);
+
+  const showSnackbar = (message: string) => {
+    setSnackbarMessage(message);
+    setIsSnackbarVisible(true);
+  };
+
+  const handleEyadButtonClick = () => {
+    showSnackbar('hello world');
+  };
+
+  const handleDismissSnackbar = () => {
+    setIsSnackbarVisible(false);
+  };
+
   return <section id="home" className="relative h-[80vh] w-full bg-black">
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
       backgroundImage: "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
@@ -21,8 +39,19 @@ const Hero = () => {
           <a href="#contact" className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white/10 transition-colors">
             Reserve Table
           </a>
+          <button
+            onClick={handleEyadButtonClick}
+            className="bg-sky-600 text-white px-6 py-3 rounded-md font-medium hover:bg-sky-700 transition-colors"
+          >
+            eyad
+          </button>
         </div>
       </div>
+      <Snackbar
+        message={snackbarMessage}
+        isVisible={isSnackbarVisible}
+        onDismiss={handleDismissSnackbar}
+      />
     </section>;
 };
 export default Hero;
